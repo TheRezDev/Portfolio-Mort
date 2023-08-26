@@ -9,26 +9,54 @@ import { motion } from 'framer-motion';
 
 
 
+// menu variants
+const menuVariants = {
+  hidden: {
+    x: '100%'
+  },
+  show: {
+    x: 0,
+    transition: {
+      ease: [0.6, 0.01, -0.05, 0.9],
+    },
+  },
+};
 
 const MobileNav = () => {
+  const [openMenu, setOpenMenu] = useState(false);
+
   return (
-    <nav>
+    <nav className="text-primary xl:hidden ">
+      
       {/* nav open button */}
-      <div className="text-3xl cursor-pointer">
+      <div onClick={()=> setOpenMenu(true)}
+        className="text-3xl cursor-pointer">
         <CgMenuRight/>
       </div>
+      
       {/* menu */}
-      <div className="absolute top-0 right-0 z-20 w-full h-screen max-w-xs bg-white shadow-2xl">
+      <motion.div
+        variants={menuVariants}
+        initial="hidden"
+        animate={openMenu ? 'show' : ''}
+        className="absolute top-0 right-0 z-20 w-full h-screen max-w-xs bg-white shadow-2xl">
+        
         {/* icon */}
-        <div>icon</div>
+        <div onClick={()=> setOpenMenu(false)}
+          className="text-4xl absolute z-30 left-4 top-14
+        text-primary cursor-pointer ">
+          <IoMdClose/>
+        </div>
+        
         {/* menu list */}
-        <ul>
+        <ul className="h-full flex flex-col justify-center items-center gap-y-8
+                      text-primary font-primary font-bold text-3xl  ">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/portfolio">Portfolio</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
-      </div>
+      </motion.div>
     </nav>
   );
 };

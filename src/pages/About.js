@@ -25,12 +25,11 @@ const About = () => {
               sed dolorem dolore.
               <br />
               <br />
-            <p>
+
               Lorem ipsum dolor sit amet consectetur,
               adipisicing elit. exercitationem, vetitaits.
               Veritatis illum aut, reprehenderit
               sed dolorem dolore
-            </p>
             </p>
             
             <Link to={'/portfolio'} className='btn'>View my Work</Link>
